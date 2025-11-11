@@ -1,4 +1,5 @@
 import paramiko
+import func 
 
 cliente = paramiko.SSHClient()
 
@@ -9,9 +10,6 @@ cliente.connect(
     username="servico",
     password="3141" 
 )
-
-stdin, stdout, stderr = cliente.exec_command("ls -l /var/")
-
-print(stdout.read().decode())
-
+    
+print(func.ip(cliente))
 cliente.close()
