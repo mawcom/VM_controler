@@ -1,4 +1,4 @@
-import paramiko
+import paramiko # type: ignore
 import func 
 
 cliente = paramiko.SSHClient()
