@@ -1,0 +1,24 @@
+paramiko para cliente:
+cliente  = paramiko.SSHlCient() // ceta que a variavel cliente
+
+todo cliente precisa verificar quais as chaves de servidores que ele possui salvo em alguma pasta, como no exemplo que estamos fazendo é apenas testes, vamos usar a variável: .set_missing_host_key_policy(paramiko.AutoAddPolicy())
+para ignorar as chaves de acesso, assim, ele não verifica se é um servidor confiável ou não, apenas acessa
+
+cliente.conncet() // aqui, depois de verificarmos qual é o servidor, e confirmamos que ele está ok, vamos nos conectar usando as seguintes instacias dentro da função .connet()
+hostname = ip do servidor
+username = usuario dentro do servidor
+password = senha do usario 
+
+somente essas instacias são obrigatorias
+
+stdin // declara uma entrada de informação informação no terminal
+stdout // declara saido de informação no terminal
+stderr // declara saida de informação de erros no terminal
+
+todos os std recebem a função cliente.exec_command("comando a ser executado e posteriormente imprimido na tela, sendo um out ou erro")
+quando realizamos uma tarefa que demanda terminal, pra uma resposta, temos que por o parâmetro = cliente.exec_command("codigo", get_pty=True) // (p get_pty=true gera um pseudo terminal para dar ao usuario a possibilidade de digitar algo, ai depois usamos stdin para digitar oque queremos)
+
+stdout.read() // mostra os dados em forma de bytes
+stdout.read().decode() // mostra os dados bunitin
+
+cliente.close() // fecha conexão com o servidor

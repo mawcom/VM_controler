@@ -9,3 +9,5 @@ to connect the aplication in the VM, we will use a ssh server, due this, it's ne
 `sudo apt install openssh-server -y` to install the ssh server. 
 
 after install, active your server using: `sudo systemctl enable ssh`,  `sudo systemctl start ssh` and `sudo systemctl status ssh` to see the status of your serve, you should see Active: active (running) or just enable  
+
+the main user of your vm need to be a sudoes user, otherwise, you wont have permision to execute some commands like `cat /var/log/syslog` to get the logs. so, you need to add the user to sudoers users. try this: `su -`, `usermod -aG sudo USER_NAME`, after this, restart your enviromment and try this: `groups USER_NAME` you should see something like : `USER_NAME: USER_NAME sudo`
