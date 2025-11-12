@@ -1,4 +1,6 @@
 import paramiko # type: ignore
+
+
 import func 
 
 cliente = paramiko.SSHClient()
@@ -11,5 +13,5 @@ cliente.connect(
     password="3141" 
 )
     
-print(func.ip(cliente))
+print(func.Syslog(3141, cliente))
 cliente.close()

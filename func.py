@@ -1,10 +1,29 @@
+import paramiko
+
+# informações do sistema 
+
 def Syslog(password,client):
-    stdin, stdout, stderr = client.exec_command("sudo -S tail /var/log/syslog")
+    while True:
+        escolha = input(str("qual parte você deseja: \n 1: head \n 2: cat \n 3: tail"))
+        if escolha == "1":
+            escolha = "head"
+            break
+        if escolha == "2":
+            escolha = "cat"
+            break
+        if escolha == "3":
+            escolha = "tail"
+            break
+        else:
+            print("comando invalido")
+
+    stdin, stdout, stderr = client.exec_command(f"sudo -S {escolha} /var/log/syslog")
     stdin.write(f"{password}\n")
     stdin.flush()
-    saida = stdout.read().decode()
 
-    return saida
+    resposta = f"Syslog:\n{stdout.read().decode()}\nerr0{stderr.read().decode()}"
+
+    return resposta
 
 def storage(client):
     stdin, stdout, stderr = client.exec_command("free -h")
@@ -36,4 +55,10 @@ def ip(client):
     saida = stdout.read().decode()
 
     return saida
+
+#gerenciamento de arquivos e diretórios
+
+def listdic(client):
+    dic = input("digite o caminho: ")
+    stdin, stdout, stderr = client.exec_command(f"ls -la {dic}")
 
